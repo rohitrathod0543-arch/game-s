@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RR Games — Premium Arcade</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+  <!-- Loading screen -->
+  <div id="loader">
+    <div class="loader-logo">RR<span>.</span></div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+ 
+  <!-- Animated particle background -->
+  <canvas id="particles"></canvas>
+ 
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#home" class="brand">RR <span>GAMES</span></a>
+      <nav class="nav-links">
+        <a href="#featured">Featured</a>
+        <a href="#trending">Trending</a>
+        <a href="#stats">Stats</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="soundToggle" class="icon-btn" title="Toggle sound" aria-label="Toggle sound">🔊</button>
+        <button id="navToggle" class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+ 
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">The premium browser arcade</p>
+      <h1 class="hero-title">
+        <span class="line">Play sharper.</span>
+        <span class="line accent">Score higher.</span>
+      </h1>
+      <p class="hero-sub">Eight fast, focused games and tools — no downloads, no accounts, just glass, glow, and a leaderboard that remembers you.</p>
+      <div class="hero-cta">
+        <a href="#featured" class="btn btn-primary">Browse Games</a>
+        <a href="#stats" class="btn btn-ghost">See Stats</a>
+      </div>
+    </div>
+    <div class="hero-orb"></div>
+  </section>
+ 
+  <!-- Search + Filter -->
+  <section class="toolbar">
+    <div class="toolbar-inner">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input id="searchInput" type="text" placeholder="Search games or tools...">
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="game">Games</button>
+        <button class="filter-chip" data-filter="tool">Tools</button>
+        <button class="filter-chip" data-filter="fast">Quick Play</button>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- Featured Games -->
+  <section id="featured" class="section">
+    <div class="section-head">
+      <h2>Featured Games</h2>
+      <p>Hand-picked, built for replay value.</p>
+    </div>
+    <div class="card-grid" id="featuredGrid"></div>
+  </section>
+ 
+  <!-- Trending -->
+  <section id="trending" class="section alt">
+    <div class="section-head">
+      <h2>Trending Now</h2>
+      <p>What players are opening most this week.</p>
+    </div>
+    <div class="card-grid" id="trendingGrid"></div>
+  </section>
+ 
+  <!-- Stats -->
+  <section id="stats" class="section stats-section">
+    <div class="section-head">
+      <h2>Your Dashboard</h2>
+      <p>Live stats pulled from this browser's saved scores.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-num" id="statGames">0</span><span class="stat-label">Games Played</span></div>
+      <div class="stat-card"><span class="stat-num" id="statHigh">0</span><span class="stat-label">Best High Score</span></div>
+      <div class="stat-card"><span class="stat-num" id="statBadges">0</span><span class="stat-label">Achievements</span></div>
+      <div class="stat-card"><span class="stat-num" id="statReviews">0</span><span class="stat-label">Reviews Left</span></div>
+    </div>
+    <div class="badges-row" id="badgesRow"></div>
+  </section>
+ 
+  <!-- Ratings summary -->
+  <section class="section ratings-section">
+    <div class="section-head">
+      <h2>User Ratings</h2>
+      <p>Rate any game after you play — it's saved to this device.</p>
+    </div>
+    <div class="ratings-grid" id="ratingsGrid"></div>
+  </section>
+ 
+  <!-- Reviews -->
+  <section id="reviews" class="section alt">
+    <div class="section-head">
+      <h2>Reviews</h2>
+      <p>Leave a note on what you played.</p>
+    </div>
+    <div class="review-form glass">
+      <input id="reviewName" type="text" placeholder="Your name">
+      <textarea id="reviewText" placeholder="What did you think?" rows="3"></textarea>
+      <div class="review-form-row">
+        <div class="star-input" id="starInput" data-value="0">
+          <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+        </div>
+        <button class="btn btn-primary" id="submitReview">Post Review</button>
+      </div>
+    </div>
+    <div class="reviews-list" id="reviewsList"></div>
+  </section>
+ 
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="about-grid">
+      <div>
+        <h2>About RR Games</h2>
+        <p>RR Games is a self-contained arcade built with plain  Every score, rating and review lives in your browser's local storage, so your progress stays with you and nowhere else.</p>
+        <p>Built for speed: the entire site loads as three lightweight files, tuned to feel instant on mobile data and desktop alike.</p>
+      </div>
+      <div class="about-points">
+        <div class="point"><strong>Zero installs</strong><span>Play instantly in any modern browser.</span></div>
+        <div class="point"><strong>Private by default</strong><span>Your data never leaves this device.</span></div>
+        <div class="point"><strong>Built to last</strong><span>Vanilla code, no dependency rot.</span></div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- Contact -->
+  <section id="contact" class="section alt contact-section">
+    <div class="section-head">
+      <h2>Contact</h2>
+      <p>Questions, bugs, or a game you'd like to see next.</p>
+    </div>
+    <form class="contact-form glass" id="contactForm">
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Message" rows="4" required></textarea>
+      <button class="btn btn-primary" type="submit">Send Message</button>
+    </form>
+  </section>
+ 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="brand">RR <span>GAMES</span></div>
+      <p>© 2026 RR Games.  &amp; </p>
+      <div class="footer-links">
+        <a href="#featured">Games</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+ 
+  <!-- Game Modal -->
+  <div id="gameModal" class="modal">
+    <div class="modal-inner glass">
+      <div class="modal-head">
+        <h3 id="modalTitle">Game</h3>
+        <div class="modal-actions">
+          <button id="restartBtn" class="icon-btn" title="Restart">⟳</button>
+          <button id="closeModal" class="icon-btn" title="Close">✕</button>
+        </div>
+      </div>
+      <div id="modalScore" class="modal-score"></div>
+      <div id="gameStage" class="game-stage"></div>
+      <div class="modal-rate">
+        <span>Rate this game:</span>
+        <div class="star-input" id="modalStarInput" data-value="0">
+          <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
+ 
